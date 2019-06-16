@@ -1,8 +1,8 @@
 package com.example.stationviewer.data
 
-data class StationData(
+data class StationOutputData(
     val code: Int,
     val name: String,
-    val latitude: Double,
-    val longitude: Double
+    val longitude: Double,
+    val latitude: Double
 )
