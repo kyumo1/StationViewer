@@ -15,17 +15,25 @@ import com.example.stationviewer.MapsActivity
 import com.example.stationviewer.R
 import com.example.stationviewer.adapters.StationListViewAdapter
 import com.example.stationviewer.data.StationOutputData
+import com.example.stationviewer.di.component.DaggerStationsFragmentComponent
+import com.example.stationviewer.di.module.Module
 import com.example.stationviewer.repositories.StationsRepository
 import com.example.stationviewer.usecases.GetStationsUseCase
 import com.example.stationviewer.viewmodels.StationsViewModel
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
 /**
  * A placeholder fragment containing a simple view.
  */
 class StationsFragment : Fragment() {
 
+    @Inject lateinit var viewModel: StationsViewModel
+
+    private val component = DaggerStationsFragmentComponent.builder().build()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        component.inject(this)
     }
 
     override fun onCreateView(
@@ -35,11 +43,7 @@ class StationsFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_main, container, false)
         val list = root.findViewById<ListView>(R.id.list)
         list.adapter = StationListViewAdapter(requireContext(), mutableListOf())
-
-        val repository = StationsRepository()
-        val useCase = GetStationsUseCase(repository)
-        val viewModel = StationsViewModel(useCase, arguments?.getInt(ARG_LINE_NUMBER) ?: 11302)
-        viewModel.getStations().observe(this, Observer {
+        viewModel.getStations(arguments?.getInt(ARG_LINE_NUMBER) ?: 11302).observe(this, Observer {
             (list.adapter as StationListViewAdapter).addAll(it)
         })
         list.setOnItemClickListener { _, _, position, _ ->
