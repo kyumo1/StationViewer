@@ -1,26 +1,19 @@
 package com.example.stationviewer.ui.main
 
-import android.app.Application
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.example.stationviewer.MainActivity
 import com.example.stationviewer.MapsActivity
 import com.example.stationviewer.R
 import com.example.stationviewer.adapters.StationListViewAdapter
 import com.example.stationviewer.data.StationOutputData
 import com.example.stationviewer.di.component.DaggerStationsFragmentComponent
-import com.example.stationviewer.di.module.Module
-import com.example.stationviewer.repositories.StationsRepository
-import com.example.stationviewer.usecases.GetStationsUseCase
 import com.example.stationviewer.viewmodels.StationsViewModel
-import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 /**
@@ -28,7 +21,8 @@ import javax.inject.Inject
  */
 class StationsFragment : Fragment() {
 
-    @Inject lateinit var viewModel: StationsViewModel
+    @Inject
+    lateinit var viewModel: StationsViewModel
 
     private val component = DaggerStationsFragmentComponent.builder().build()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,8 +31,8 @@ class StationsFragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_main, container, false)
         val list = root.findViewById<ListView>(R.id.list)

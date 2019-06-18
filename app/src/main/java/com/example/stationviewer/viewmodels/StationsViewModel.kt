@@ -9,7 +9,7 @@ import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
-class StationsViewModel @Inject constructor(private val getStationsUseCase: IGetStationsUseCase): ViewModel() {
+class StationsViewModel @Inject constructor(private val getStationsUseCase: IGetStationsUseCase) : ViewModel() {
     private val compositeDisposable = CompositeDisposable()
     private val station: MutableLiveData<List<StationOutputData>> by lazy {
         MutableLiveData<List<StationOutputData>>().also {
@@ -28,7 +28,7 @@ class StationsViewModel @Inject constructor(private val getStationsUseCase: IGet
         dispose()
         val disposable = getStationsUseCase.get(lineCode).subscribe({
             station.postValue(it)
-        },{
+        }, {
             loadStations(lineCode)
         })
         compositeDisposable.add(disposable)

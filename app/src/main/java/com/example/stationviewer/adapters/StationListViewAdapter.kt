@@ -10,7 +10,8 @@ import com.example.stationviewer.R
 import com.example.stationviewer.data.StationOutputData
 import com.example.stationviewer.databinding.ListItemBinding
 
-class StationListViewAdapter(context: Context, list: MutableList<StationOutputData>): ArrayAdapter<StationOutputData>(context, 0, list) {
+class StationListViewAdapter(context: Context, list: MutableList<StationOutputData>) :
+    ArrayAdapter<StationOutputData>(context, 0, list) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         return if (convertView == null) {
             val inflater = LayoutInflater.from(context)

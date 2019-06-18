@@ -3,7 +3,7 @@
     <data>
         <variable
                 name="adapter"
-                type="com.example.stationviewer.adapters.StationListViewAdapter" />
+                type="com.example.stationviewer.adapters.StationListViewAdapter"/>
         <variable
                 name="viewModel"
                 type="com.example.stationviewer.viewmodels.StationsViewModel"/>
@@ -20,6 +20,6 @@
                 android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-            />
+        />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

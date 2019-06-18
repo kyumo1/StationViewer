@@ -6,6 +6,6 @@ import dagger.Component
 import dagger.android.AndroidInjector
 
 @Component(modules = [Module::class])
-interface StationsFragmentComponent: AndroidInjector<StationsFragment> {
+interface StationsFragmentComponent : AndroidInjector<StationsFragment> {
     override fun inject(fragment: StationsFragment)
 }
